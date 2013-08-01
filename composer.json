@@ -1,0 +1,32 @@
+{
+  "name":        "ingenerator/kohana-twbs",
+  "type":        "kohana-module",
+  "description": "Integrates Bootstrap and Font-Awesome with Kohana to streamline building applications based on them",
+  "homepage":    "https://github.com/ingenerator/kohana-twbs",
+  "license":     "BSD-3-Clause",
+  "keywords":    ["kohana", "bootstrap", "font-awesome"],
+  "authors": [
+    {
+      "name":     "Andrew Coulton",
+      "homepage": "https://github.com/acoulton",
+      "role":     "developer"
+    }
+  ],
+  "support": {
+    "issues":   "https://github.com/ingenerator/kohana-twbs/issues",
+    "source":   "https://github.com/ingenerator/kohana-twbs"
+  },
+  "require": {
+    "composer/installers":      "~1.0",
+    "kohana/core":              "dev-ingenerator-master",
+    "twbs/bootstrap":           "3.0.*",
+    "fortawesome/font-awesome": "*",
+    "php":                      ">=5.3.3"
+  },
+  "require-dev": {
+    "ingenerator/koharness": "dev-master"
+  },
+  "repositories": [
+    {"type": "vcs", "url": "https://github.com/ingenerator/kohana-core"}
+  ]
+}
