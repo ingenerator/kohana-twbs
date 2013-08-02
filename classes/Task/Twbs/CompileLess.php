@@ -25,6 +25,7 @@
  *  - css-output:  the name of the css file to output - defaults to site.bootstrap(.css)
  *  - no-compress: don't compress the generated CSS
  *  - lint-only:   just lint the source files, don't output the css
+ *  - loop-after:  rebuild the less every X seconds, running in a loop until triggered to quit
  *
  * @package   kohana-twbs
  * @category  Tasks
@@ -47,6 +48,7 @@ class Task_Twbs_CompileLess extends Minion_Task {
 			'css-output'  => 'site.bootstrap',
 			'no-compress' => NULL,
 			'lint-only'   => NULL,
+			'loop-after'  => NULL
 		);
 		// Call the parent constructor
 		parent::__construct();
@@ -65,8 +67,9 @@ class Task_Twbs_CompileLess extends Minion_Task {
 		       ->rule('vendor-path', 'not_empty')
 		       ->rule('vendor-path', array('Task_Twbs_PublishAssets', 'valid_path'))
 		       ->rule('public-path', 'not_empty')
-			   ->rule('no-compress', 'numeric')
-			   ->rule('lint-only',   'numeric');
+		       ->rule('no-compress', 'numeric')
+		       ->rule('lint-only',   'numeric')
+		       ->rule('loop-after',  'numeric');
 	}
 
 	/**
@@ -127,13 +130,26 @@ class Task_Twbs_CompileLess extends Minion_Task {
 		Minion_CLI::write(Minion_CLI::color('Preparing to execute recess with following command', 'green'));
 		Minion_CLI::write(Minion_CLI::color('> '.$command, 'green'));
 
-		// Execute and check the result
-		system($command, $exit_code);
-		if ($exit_code != 0)
+		$loop = ($params['loop-after'] > 0);
+		do
 		{
-			throw new Exception("Command '".$command.'" failed with exit code '.$exit_code);
+			Minion_CLI::write(Minion_CLI::color('Building CSS', 'light_gray'));
+
+			// Execute and check the result
+			system($command, $exit_code);
+			if ($exit_code != 0)
+			{
+				throw new Exception("Command '".$command.'" failed with exit code '.$exit_code);
+			}
+			Minion_CLI::write(Minion_CLI::color('Compiled '.$input.' to '.$output, 'green'));
+
+			if ($loop)
+			{
+				sleep($params['loop-after']);
+			}
+
 		}
-		Minion_CLI::write(Minion_CLI::color('Compiled '.$input.' to '.$output, 'green'));
+		while($loop);
 	}
 
 }
