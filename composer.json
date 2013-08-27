@@ -18,7 +18,7 @@
   },
   "require": {
     "composer/installers":      "~1.0",
-    "kohana/core":              "dev-ingenerator-master",
+    "kohana/core":              "3.3.*",
     "twbs/bootstrap":           "3.0.*",
     "fortawesome/font-awesome": "*",
     "php":                      ">=5.3.3"
@@ -26,7 +26,8 @@
   "require-dev": {
     "ingenerator/koharness": "dev-master"
   },
+  "minimum-stability": "dev",
   "repositories": [
-    {"type": "vcs", "url": "https://github.com/ingenerator/kohana-core"}
+    {"type": "vcs", "url": "https://github.com/kohana/core"}
   ]
 }
