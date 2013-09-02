@@ -33,7 +33,7 @@
  * @copyright 2013 inGenerator Ltd
  * @license   http://kohanaframework.org/license
  */
-class Task_Twbs_CompileLess extends Minion_Task {
+class Task_Twbs_Compileless extends Minion_Task {
 
 	/**
 	 * Sets the default options for the task - these use expressions so cannot be set in the field initialisation
@@ -65,7 +65,7 @@ class Task_Twbs_CompileLess extends Minion_Task {
 	{
 		return parent::build_validation($validation)
 		       ->rule('vendor-path', 'not_empty')
-		       ->rule('vendor-path', array('Task_Twbs_PublishAssets', 'valid_path'))
+		       ->rule('vendor-path', array('Task_Twbs_Publishassets', 'valid_path'))
 		       ->rule('public-path', 'not_empty')
 		       ->rule('no-compress', 'numeric')
 		       ->rule('lint-only',   'numeric')
