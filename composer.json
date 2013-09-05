@@ -26,8 +26,5 @@
   "require-dev": {
     "ingenerator/koharness": "dev-master"
   },
-  "minimum-stability": "dev",
-  "repositories": [
-    {"type": "vcs", "url": "https://github.com/kohana/core"}
-  ]
+  "minimum-stability": "dev"
 }
