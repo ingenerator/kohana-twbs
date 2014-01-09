@@ -99,7 +99,7 @@ class Task_Twbs_Publishassets extends Minion_Task {
 	protected function copy_files($source_dir, $file_pattern, $dest_dir)
 	{
 		// Create the destination directory if required
-		if ( ! file_exists($dest_dir) AND ! mkdir($dest_dir, 0655, TRUE))
+		if ( ! file_exists($dest_dir) AND ! mkdir($dest_dir, 0755, TRUE))
 		{
 			throw new Exception("Could not create missing destination directory in '$dest_dir'");
 		}
